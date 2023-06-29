@@ -1,0 +1,90 @@
+<html>
+<head>
+  <title>Todo App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    
+    h1 {
+      margin-bottom: 20px;
+    }
+    
+    .todo-list {
+      width: 300px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    
+    .todo-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    
+    .todo-checkbox {
+      margin-right: 10px;
+    }
+    
+    .todo-text {
+      flex-grow: 1;
+    }
+    
+    .todo-remove {
+      color: red;
+      cursor: pointer;
+    }
+    
+    .todo-add {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Todo App</h1>
+
+  <div class="todo-list">
+    <div class="todo-item">
+      <input type="checkbox" class="todo-checkbox">
+      <span class="todo-text">Todo item 1</span>
+      <span class="todo-remove">X</span>
+    </div>
+    <div class="todo-item">
+      <input type="checkbox" class="todo-checkbox">
+      <span class="todo-text">Todo item 2</span>
+      <span class="todo-remove">X</span>
+    </div>
+    <div class="todo-item">
+      <input type="checkbox" class="todo-checkbox">
+      <span class="todo-text">Todo item 3</span>
+      <span class="todo-remove">X</span>
+    </div>
+    <input type="text" class="todo-add" placeholder="Add a new item">
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('.todo-add').keypress(function(event) {
+        if (event.which === 13) {
+          var text = $(this).val();
+          if (text !== '') {
+            var newItem = $('<div class="todo-item">' +
+                              '<input type="checkbox" class="todo-checkbox">' +
+                              '<span class="todo-text">' + text + '</span>' +
+                              '<span class="todo-remove">X</span>' +
+                            '</div>');
+            $(this).val('');
+            $('.todo-list').append(newItem);
+          }
+        }
+      });
+
+      $(document).on('click', '.todo-remove', function() {
+        $(this).parent().remove();
+      });
+    });
+  </script>
+</body>
+</html>
